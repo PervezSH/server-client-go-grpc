@@ -1,75 +1,80 @@
-# Basic Go gRPC Server and Client
+# Go gRPC Server and Client
 
-This is a basic gRPC server and client written in Go. It is based on the [gRPC Quickstart](https://grpc.io/docs/quickstart/go.html) and [gRPC Basics: Go](https://grpc.io/docs/tutorials/basic/go.html) tutorials.
+This project provides a basic implementation of a gRPC server and client in Go. It demonstrates the following functionality:
 
-We have implemented a simple gRPC server and client with the following functionality:
-- simple RPC
-- server-side streaming RPC
-- client-side streaming RPC
-- bidirectional streaming RPC
+- Simple RPC
+- Server-side streaming RPC
+- Client-side streaming RPC
+- Bidirectional streaming RPC
 
-# Setting up a gRPC-Go project
-1. Create a new directory for your project and cd into it
+## Project Structure
+The project directory structure is as follows:
 
-```bash
-mkdir basic-go-grpc
-cd basic-go-grpc
-mkdir client server proto
-```
+- `client`: Contains the client implementation and the `main.go` file.
+- `server`: Contains the server implementation and the `main.go` file.
+- `proto`: Stores the `.proto` file defining the gRPC services and messages.
 
-2. Installing the gRPC Go plugin
+## Prerequisites
+Before running the gRPC server and client, make sure you have the following prerequisites installed:
 
+- Go (1.16 or later): [Installation Guide](https://golang.org/doc/install)
+- Protocol Buffers Compiler (protoc): [Installation Guide](https://grpc.io/docs/protoc-installation/)
+- gRPC Go plugin: Run the following commands to install the plugin:
 ```bash
 go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.28
-
 go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.2
-
 export PATH="$PATH:$(go env GOPATH)/bin"
 ```
 
-3. Initialize a Go module
+## Installation
+1. Create a new directory for your project and navigate into it:
 
 ```bash
-go mod init github.com/your_username/basic-go-grpc
+mkdir server-client-go-grpc
+cd server-client-go-grpc
+```
 
+2. Initialize a Go module for the project:
+
+```bash
+go mod init github.com/your_username/server-client-go-grpc
+```
+
+3. Install the necessary dependencies:
+```bash
 go mod tidy
 ```
 
-4. Create the proto file with the required services and messages in the proto directory
-
-5. Generate .pb.go files from the proto file
-
-depending on what path you mention in your greet.proto file, you will either run this - 
+4. To generate the `.pb.go` files from the `.proto` file, use the following command:
 
 ```bash
 protoc --go_out=. --go-grpc_out=. proto/greet.proto
 ```
-OR this -
 
-```bash
-protoc --go_out=. --go_opt=module=github.com/Apra487/basic-go-grpc --go-grpc_out=. --go-grpc_opt=module=githu
-b.com/Apra487/basic-go-grpc proto/greet.proto
-```
+Note: Depending on the path mentioned in your greet.proto file, you may need to adjust the command accordingly.
 
-6. Create the server and client directories and create the main.go files with necessary controllers and services
+## Server Implementation
 
+The server implementation can be found in the `server/main.go` file. This file defines the controllers and services used by the server.
 
-# Running the application
+## Client Implementaion
 
-1. Install the dependencies
+The client implementation can be found in the `client/main.go` file. This file demonstrates how the client interacts with the server.
+## Running the application
 
-```bash
-go mod tidy
-```
+1. Start the gRPC server:
 
-2. Run the server
 
 ```bash
 go run server/main.go
 ```
 
-3. Run the client
+2. Run the gRPC client in a separate terminal session:
 
 ```bash
 go run client/main.go
 ```
+
+## License
+
+This project is licensed under the MIT License. 
